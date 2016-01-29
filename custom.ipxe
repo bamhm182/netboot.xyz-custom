@@ -1,0 +1,98 @@
+#!ipxe
+
+:custom
+clear custom_choice
+menu bamhm182's Installers
+item --gap Linux Distros:
+item kali ${space} Kali Linux
+item ubuntu2204d ${space} Ubuntu 22.04 LTS - Desktop
+item ubuntu2204s ${space} Ubuntu 22.04 LTS - Server
+item ubuntu2004d ${space} Ubuntu 20.04 LTS - Desktop
+item ubuntu2004s ${space} Ubuntu 20.04 LTS - Server
+item ubuntu1804d ${space} Ubuntu 18.04 LTS - Desktop
+item ubuntu1804s ${space} Ubuntu 18.04 LTS - Server
+item windows11 ${space} Windows 11
+choose custom_choice || goto custom_exit
+echo ${cls}
+goto ${custom_choice}
+
+:kali
+imgfree
+set netboot_url http://kali.download/kali/dists/kali-rolling/main/installer-amd64/current/images/netboot/debian-installer/amd64
+set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/kali/rolling.cfg
+kernel ${netboot_url}/linux vga=788 auto=true priority=critical preseed/url=${preseed_url} -- quiet initrd=initrd.magic
+initrd ${netboot_url}/initrd.gz
+boot
+
+:ubuntu2204d
+imgfree
+# ubuntu-netboot-22.04-amd64 release
+set netboot_url https://github.com/netbootxyz/ubuntu-squash/releases/download/22.04.4-69164c58
+set iso_url http://releases.ubuntu.com/jammy/ubuntu-22.04.4-live-server-amd64.iso
+set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/subiquity
+kernel ${netboot_url}/vmlinuz root=/dev/ram0 ramdisk_size=1500000 hostname=ubuntu-desktop-2204 ip=dhcp url=${iso_url} autoinstall ds=nocloud-net;s=${preseed_url} initrd=initrd.magic
+initrd ${netboot_url}/initrd
+boot
+
+:ubuntu2204s
+imgfree
+# ubuntu-netboot-22.04-amd64 release
+set netboot_url https://github.com/netbootxyz/ubuntu-squash/releases/download/22.04.4-69164c58
+set iso_url http://releases.ubuntu.com/jammy/ubuntu-22.04.4-live-server-amd64.iso
+set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/subiquity
+kernel ${netboot_url}/vmlinuz root=/dev/ram0 ramdisk_size=1500000 hostname=ubuntu-server-2204 ip=dhcp url=${iso_url} autoinstall ds=nocloud-net;s=${preseed_url} initrd=initrd.magic
+initrd ${netboot_url}/initrd
+boot
+
+:ubuntu2004d
+imgfree
+# ubuntu-netboot-20.04-amd64 release
+set netboot_url https://github.com/netbootxyz/ubuntu-squash/releases/download/20.04.6-fcca9804
+set iso_url http://releases.ubuntu.com/focal/ubuntu-20.04.6-live-server-amd64.iso
+set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/subiquity
+kernel ${netboot_url}/vmlinuz root=/dev/ram0 ramdisk_size=1500000 hostname=ubuntu-desktop-2004 ip=dhcp url=${iso_url} autoinstall ds=nocloud-net;s=${preseed_url} initrd=initrd.magic
+initrd ${netboot_url}/initrd
+boot
+
+:ubuntu2004s
+imgfree
+# ubuntu-netboot-20.04-amd64 release
+set netboot_url https://github.com/netbootxyz/ubuntu-squash/releases/download/20.04.6-fcca9804
+set iso_url http://releases.ubuntu.com/focal/ubuntu-20.04.6-live-server-amd64.iso
+set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/subiquity
+kernel ${netboot_url}/vmlinuz root=/dev/ram0 ramdisk_size=1500000 hostname=ubuntu-server-2004 ip=dhcp url=${iso_url} autoinstall ds=nocloud-net;s=${preseed_url} initrd=initrd.magic
+initrd ${netboot_url}/initrd
+boot
+
+:ubuntu1804d
+imgfree
+set netboot_url http://us.archive.ubuntu.com/ubuntu/dists/bionic-updates/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64
+set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/1804d.cfg
+kernel ${netboot_url}/linux auto=true priority=critical hostname=ubuntu-desktop-1804 preseed/url=${preseed_url} mirror/suite=bionic initrd=initrd.magic
+initrd ${netboot_url}/initrd.gz
+boot
+
+:ubuntu1804s
+imgfree
+set netboot_url http://us.archive.ubuntu.com/ubuntu/dists/bionic-updates/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64
+set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/1804s.cfg
+kernel ${netboot_url}/linux auto=true priority=critical hostname=ubuntu-server-1804 preseed/url=${preseed_url} mirror/suite=bionic initrd=initrd.magic
+initrd ${netboot_url}/initrd.gz
+boot
+
+:windows11
+imgfree
+set netboot_url http://192.168.1.1/windows/11/x64
+kernel https://github.com/ipxe/wimboot/releases/latest/download/wimboot
+initrd -n bootmgr     ${netboot_url}/bootmgr          bootmgr ||
+initrd -n bootmgr.efi ${netboot_url}/bootmgr.efi      bootmgr.efi ||
+initrd -n bcd         ${netboot_url}/boot/bcd         bcd ||
+initrd -n bcd         ${netboot_url}/Boot/BCD         bcd ||
+initrd -n boot.sdi    ${netboot_url}/boot/boot.sdi    boot.sdi ||
+initrd -n boot.sdi    ${netboot_url}/Boot/boot.sdi    boot.sdi ||
+initrd -n boot.wim    ${netboot_url}/sources/boot.wim boot.wim ||
+boot
+
+:custom_exit
+chain utils.ipxe
+exit 0
