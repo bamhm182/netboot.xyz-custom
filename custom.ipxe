@@ -29,8 +29,8 @@ imgfree
 # ubuntu-netboot-22.04-amd64 release
 set netboot_url https://github.com/netbootxyz/ubuntu-squash/releases/download/22.04.4-69164c58
 set iso_url http://releases.ubuntu.com/jammy/ubuntu-22.04.4-live-server-amd64.iso
-set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/subiquity-desktop
-kernel ${netboot_url}/vmlinuz root=/dev/ram0 ramdisk_size=1500000 hostname=ubuntu-desktop-2204 ip=dhcp url=${iso_url} autoinstall ds=nocloud-net;s=${preseed_url} initrd=initrd.magic
+set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/desktop-2204
+kernel ${netboot_url}/vmlinuz root=/dev/ram0 ramdisk_size=1500000 ip=dhcp url=${iso_url} autoinstall ds=nocloud-net;s=${preseed_url} initrd=initrd.magic
 initrd ${netboot_url}/initrd
 boot
 
@@ -39,7 +39,7 @@ imgfree
 # ubuntu-netboot-22.04-amd64 release
 set netboot_url https://github.com/netbootxyz/ubuntu-squash/releases/download/22.04.4-69164c58
 set iso_url http://releases.ubuntu.com/jammy/ubuntu-22.04.4-live-server-amd64.iso
-set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/subiquity
+set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/server-2204
 kernel ${netboot_url}/vmlinuz root=/dev/ram0 ramdisk_size=1500000 hostname=ubuntu-server-2204 ip=dhcp url=${iso_url} autoinstall ds=nocloud-net;s=${preseed_url} initrd=initrd.magic
 initrd ${netboot_url}/initrd
 boot
@@ -49,7 +49,7 @@ imgfree
 # ubuntu-netboot-20.04-amd64 release
 set netboot_url https://github.com/netbootxyz/ubuntu-squash/releases/download/20.04.6-fcca9804
 set iso_url http://releases.ubuntu.com/focal/ubuntu-20.04.6-live-server-amd64.iso
-set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/subiquity-desktop
+set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/desktop-2004
 kernel ${netboot_url}/vmlinuz root=/dev/ram0 ramdisk_size=1500000 hostname=ubuntu-desktop-2004 ip=dhcp url=${iso_url} autoinstall ds=nocloud-net;s=${preseed_url} initrd=initrd.magic
 initrd ${netboot_url}/initrd
 boot
@@ -59,7 +59,7 @@ imgfree
 # ubuntu-netboot-20.04-amd64 release
 set netboot_url https://github.com/netbootxyz/ubuntu-squash/releases/download/20.04.6-fcca9804
 set iso_url http://releases.ubuntu.com/focal/ubuntu-20.04.6-live-server-amd64.iso
-set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/subiquity
+set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/server-2004
 kernel ${netboot_url}/vmlinuz root=/dev/ram0 ramdisk_size=1500000 hostname=ubuntu-server-2004 ip=dhcp url=${iso_url} autoinstall ds=nocloud-net;s=${preseed_url} initrd=initrd.magic
 initrd ${netboot_url}/initrd
 boot
@@ -67,7 +67,7 @@ boot
 :ubuntu1804d
 imgfree
 set netboot_url http://us.archive.ubuntu.com/ubuntu/dists/bionic-updates/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64
-set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/1804d.cfg
+set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/desktop-1804.cfg
 kernel ${netboot_url}/linux auto=true priority=critical hostname=ubuntu-desktop-1804 preseed/url=${preseed_url} mirror/suite=bionic initrd=initrd.magic
 initrd ${netboot_url}/initrd.gz
 boot
@@ -75,7 +75,7 @@ boot
 :ubuntu1804s
 imgfree
 set netboot_url http://us.archive.ubuntu.com/ubuntu/dists/bionic-updates/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64
-set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/1804s.cfg
+set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/server-1804.cfg
 kernel ${netboot_url}/linux auto=true priority=critical hostname=ubuntu-server-1804 preseed/url=${preseed_url} mirror/suite=bionic initrd=initrd.magic
 initrd ${netboot_url}/initrd.gz
 boot

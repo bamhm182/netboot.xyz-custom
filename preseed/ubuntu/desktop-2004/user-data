@@ -1,0 +1,20 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US.UTF-8
+  refresh_installer:
+  keyboad:
+    layout: us
+  update: yes
+  packages:
+    - ubuntu-desktop
+  identity:
+    hostname: ubuntu-desktop-2004
+    username: user
+    password: "$6$jMFDS5VdDQuLKsj4$MPLjQgF/I0CjIL0qCflcMvd4KVQ87RcIBpIqQrBetjJ6dlBjcrT6JucxeOfLHjLqrX9bDHKgQCeIDbrYlYBFz1"
+    # password
+  package_update: true
+  package_upgrade: true
+  ssh:
+    allow-pw: true
+    install-server: true
