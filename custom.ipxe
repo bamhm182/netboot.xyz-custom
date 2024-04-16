@@ -29,7 +29,7 @@ imgfree
 # ubuntu-netboot-22.04-amd64 release
 set netboot_url https://github.com/netbootxyz/ubuntu-squash/releases/download/22.04.4-69164c58
 set iso_url http://releases.ubuntu.com/jammy/ubuntu-22.04.4-live-server-amd64.iso
-set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/subiquity
+set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/subiquity-desktop
 kernel ${netboot_url}/vmlinuz root=/dev/ram0 ramdisk_size=1500000 hostname=ubuntu-desktop-2204 ip=dhcp url=${iso_url} autoinstall ds=nocloud-net;s=${preseed_url} initrd=initrd.magic
 initrd ${netboot_url}/initrd
 boot
@@ -49,7 +49,7 @@ imgfree
 # ubuntu-netboot-20.04-amd64 release
 set netboot_url https://github.com/netbootxyz/ubuntu-squash/releases/download/20.04.6-fcca9804
 set iso_url http://releases.ubuntu.com/focal/ubuntu-20.04.6-live-server-amd64.iso
-set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/subiquity
+set preseed_url https://raw.githubusercontent.com/bamhm182/netboot.xyz-custom/master/preseed/ubuntu/subiquity-desktop
 kernel ${netboot_url}/vmlinuz root=/dev/ram0 ramdisk_size=1500000 hostname=ubuntu-desktop-2004 ip=dhcp url=${iso_url} autoinstall ds=nocloud-net;s=${preseed_url} initrd=initrd.magic
 initrd ${netboot_url}/initrd
 boot
